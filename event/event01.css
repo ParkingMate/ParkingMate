@@ -1,0 +1,842 @@
+@font-face { 
+  font-family: "SDGothic";
+  src: url("font/AppleSDGothicNeoM.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-style: normal;
+  src: url('./pretendard/Pretendard-Regular.subset.woff2') format('woff2'),
+    url('./pretendard/Pretendard-Regular.subset.woff') format('woff'),
+    url('./pretendard/Pretendard-Regular.subset.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-style: normal;
+  src: url('./pretendard/Pretendard-Medium.subset.woff2') format('woff2'),
+    url('./pretendard/Pretendard-Medium.subset.woff') format('woff'),
+    url('./pretendard/Pretendard-Medium.subset.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-style: normal;
+  src: url('./pretendard/Pretendard-Bold.subset.woff2') format('woff2'),
+    url('./pretendard/Pretendard-Bold.subset.woff') format('woff'),
+    url('./pretendard/Pretendard-Bold.subset.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'wadizicon';
+  font-weight: normal;
+  font-style: normal;
+  src: url("https://static.wadiz.kr/assets/fonts/wadizicon/wadizicon.eot?#iefix") format("embedded-opentype"), 
+  url("https://static.wadiz.kr/assets/fonts/wadizicon/wadizicon.woff2") format("woff2"), 
+  url("https://static.wadiz.kr/assets/fonts/wadizicon/wadizicon.woff") format("woff"), 
+  url("https://static.wadiz.kr/assets/fonts/wadizicon/wadizicon.ttf") format("truetype"), 
+  url("https://static.wadiz.kr/assets/fonts/wadizicon/wadizicon.svg#wadizicon") format("svg"); 
+}
+
+* {
+  font-family: 'SDGothic', serif;
+}
+
+*, :after, :before {
+  box-sizing: border-box;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, button, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, input, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, select, small, span, strike, strong, sub, summary, sup, table, tbody, td, textarea, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+article, aside, figcaption, figure, footer, header, nav, section {
+  display: block;
+}
+
+li, ol, ul {
+  list-style: none;
+}
+
+li, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a, input, optgroup, select, textarea {
+  color: inherit;
+}
+
+canvas, img, picture, video {
+  max-width: 100%;
+}
+
+iframe, img, video {
+  vertical-align: top;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+a, button {
+  outline: none;
+}
+
+a, button {
+  color: inherit;
+}
+
+button {
+  background-color: transparent;
+}
+
+body, button, input, select, textarea {
+  font-family: inherit;
+}
+
+address, cite, dfn, em, var {
+  font-weight: inherit;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+article, aside, figcaption, figure, footer, header, nav, section {
+  display: block;
+}
+
+article, main, section {
+  display: block;
+}
+
+#parkingmate_page-container {
+  transform-origin: 50% 0;
+  transition-property: opacity,transform;
+  transition-duration: 80ms;
+  transition-timing-function: ease-out;
+}
+
+#parkingmate_header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.parkingmate_web-header {
+  position: relative;
+  position: sticky;
+  top: 0;
+  transition: top .25s;
+  z-index: 99;
+  width: 100%;
+}
+
+html.scroll-top .parkingmate_web-header, html.wadiz-app.scroll-top .parkingmate_web-header, html.wadiz-app .parkingmate_web-header {
+  top: 0;
+}
+
+.parkingmate_web-header .parkingmate_web-header-mobile {
+  display: block;
+  position: relative;
+}
+
+.parkingmate_web-header .parkingmate_header-wrapper {
+  position: relative;
+  top: 0;
+  z-index: 9998;
+  background-color: #fff;
+  width: 100%;
+  height: 56px;
+  text-align: center;
+}
+
+.parkingmate_web-header .parkingmate_header-wrapper .parkingmate_header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 16px;
+  max-width: 1440px;
+  height: 100%;
+}
+
+.parkingmate_GNBMobile_container {
+  display: flex;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: space-between;
+  transform: translateY(0);
+  transition: transform .25s;
+  z-index: 100;
+  margin-left: 0;
+  box-shadow: 0 0 10px 2px rgba(0,0,0,.15);
+  background-color: #fff;
+  padding: 0 0 calc(8px + env(safe-area-inset-bottom));
+  width: 100%;
+  list-style: none;
+}
+
+.parkingmate_GNBMobile_item {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.parkingmate_GNBMobile_link {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  transition: .2s;
+  cursor: pointer;
+  padding-top: 7px;
+  padding-bottom: 2px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  max-width: 72px;
+  margin: 0 auto;
+}
+
+.parkingmate_withIcon_icon {
+  display: block;
+  transform: scale(1);
+  transition: transform .3s ease-out;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.parkingmate_GNBIcon_home {
+  position: absolute;
+  top: 3px;
+}
+
+.parkingmate_GNBMobile_icon {
+  margin-bottom: 3px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: 100%;
+  height: 24px;
+  color: #868e96;
+  font-size: 24px;
+}
+
+.parkingmate_GNBMobile_text {
+  line-height: 14px;
+  font-size: 10px;
+  font-weight: 400;
+  display: block;
+  position: absolute;
+  top: 33px;
+  color: #868e96;
+}
+
+.parkingmate_GNBIcon_feed {
+  position: absolute;
+  top: 9px;
+  color: #868e96;
+}
+
+.parkingmate_GNBMobile_link {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  transition: .2s;
+  cursor: pointer;
+  padding-top: 7px;
+  padding-bottom: 2px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  max-width: 72px;
+  margin: 0 auto;
+}
+
+.parkingmate_HeaderMobile_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 44px;
+  width: 44px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  overflow: hidden;
+}
+
+.parkingmate_HeaderMobile_back {
+  left: 6px;
+}
+
+.parkingmate_HeaderMobile_home {
+  right: 6px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.parkingmate_HeaderMobile_search {
+  right: 50px;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+.parkingmate_Button_icon {
+  color: #495057;
+}
+
+.parkingmate_TitleField_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.parkingmate_TitleField_container .parkingmate_TitleField_title {
+  line-height: 28px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.parkingmate_PreviewOverlay_container {
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #ff9d9d;
+  border-bottom: 1px solid #ff9d9d;
+  background-color: #fff1f1;
+  color: #f66;
+}
+
+.parkingmate_PreviewOverlay_container .parkingmate_PreviewOverlay_title {
+  line-height: 28px;
+  font-size: 16px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+.parkingmate_PreviewOverlay_container .parkingmate_PreviewOverlay_description {
+  margin-left: 16px;
+}
+
+#parkingmate_pBoardWrap {
+  padding: 10px 16px;
+  box-sizing: border-box;
+}
+
+.parkingmate_pboard-wrap {
+  margin: 0 auto;
+  width: 100%;
+  width: calc(100% - env(safe-area-inset-left) - env(safe-area-inset-right));
+}
+
+
+.parkingmate_pboard-detail-content {
+  padding: 30px 0;
+}
+
+.parkingmate_pboard-detail-content .parkingmate_article-top {
+  margin-bottom: 30px;
+}
+
+.parkingmate_pboard-detail-content .parkingmate_article-top .parkingmate_title {
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.parkingmate_pboard-detail-content .parkingmate_article-top .parkingmate_info {
+  position: relative;
+  width: 100%;
+}
+
+.parkingmate_pboard-detail-content .parkingmate_article-top .parkingmate_info em.parkingmate_user-img {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 5px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: no-repeat center center;
+  background-size: cover;
+}
+
+.parkingmate_user-info {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.parkingmate_pboard-detail-content .parkingmate_article-attached {
+  margin-bottom: 30px;
+}
+
+.parkingmate_pcommunity-share-area {
+  padding: 15px 10px;
+  padding-left: max(10px, env(safe-area-inset-left));
+  padding-right: max(10px, env(safe-area-inset-right));
+}
+
+.parkingmate_pcommunity-share-area .parkingmate_btn-symp {
+  float: left;
+  display: inline-block;
+  padding: 0 15px 0 35px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 13px;
+  color: #e4e4e4;
+  border: 1px solid #e4e4e4;
+  background: url(https://www.wadiz.kr/resources/static/img/common/icon_gray_heart.png) no-repeat 15px 8px;
+  background-size: 15px 13px;
+}
+
+.parkingmate_pcommunity-share-area .parkingmate_btn-share {
+  float: right;
+}
+
+.parkingmate_pcommunity-share-area .parkingmate_btn-share button {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  background: no-repeat 0 0;
+  background-size: cover;
+}
+
+.parkingmate_pcommunity-share-area .parkingmate_btn-share button.parkingmate_kakao {
+  background-image: url(https://www.wadiz.kr/resources/static/img/common/icon_gray_kakao.png);
+}
+
+.parkingmate_pcommunity-share-area .parkingmate_btn-share button.parkingmate_facebook {
+  background-image: url(https://www.wadiz.kr/resources/static/img/common/icon_gray_facebook.png);
+}
+
+.parkingmate_pcommunity-share-area .parkingmate_btn-share button.parkingmate_twitter {
+  background-image: url(https://www.wadiz.kr/resources/static/img/common/icon_gray_twitter.png);
+}
+
+.parkingmate_pcommunity-share-area::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.parkingmate_pboard-detail-bottom {
+  padding: 0 10px 30px;
+  background: #FAFAFA;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.parkingmate_pboard-detail-bottom .parkingmate_pboard-comment {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.parkingmate_pboard-detail-bottom .parkingmate_pboard-comment .parkingmate_comment-num {
+  margin-bottom: 20px;
+  font-size: 16px;
+  padding: 0 16px;
+  font-weight: 600;
+}
+
+.parkingmate_pboard-list {
+  padding: 0 16px;
+}
+
+.parkingmate_pboard-list ul {
+  border-top: 1px solid #E6EAED;
+}
+
+.parkingmate_pboard-list ul li {
+  border-bottom: 1px solid #E6EAED;
+}
+
+.parkingmate_pboard-list ul li a {
+  display: block;
+  padding: 24px 0;
+}
+
+.parkingmate_pboard-list ul li .parkingmate_title {
+  margin-bottom: 10px;
+  line-height: 28px;
+  font-size: 17px;
+  color: #44484B;
+}
+
+.parkingmate_pboard-list ul li .parkingmate_title em.parkingmate_category {
+  display: inline-block;
+  margin-right: 4px;
+  line-height: 24px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #00b2b2;
+}
+
+.parkingmate_pboard-list ul li .parkingmate_info {
+  font-size: 13px;
+  line-height: 16px;
+  color: #7C8288;
+}
+
+.parkingmate_pboard-detail-btn-wrap {
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.parkingmate.button {
+  transition-property: background-color, border-color, color, opacity;
+  transition-duration: 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 0 1.4117647059em;
+  height: 48px;
+  vertical-align: middle;
+  text-decoration: none;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 17px;
+  font-weight: 400;
+  box-sizing: border-box !important;
+}
+
+.parkingmate.button {
+  display: inline-block;
+  padding-top: 0.07em;
+  text-decoration: none;
+}
+
+.parkingmate.button[href] {
+  line-height: 46px;
+}
+
+#parkingmate_pBoardWrap * {
+  box-sizing: content-box;
+}
+
+.parkingmate_web-footer {
+  --white-68: rgba(255, 255, 255, .68);
+  --black-84: rgba(0, 0, 0, .84);
+  --black-54: rgba(0, 0, 0, .54);
+  --pale-grey-30: rgba(240, 242, 245, .3);
+  --dark: #1d2129;
+  position: relative;
+  background: #fff;
+  padding-top: 120px;
+  color: #212121;
+  font-size: 12px;
+  -webkit-text-size-adjust: none;
+}
+
+.parkingmate_web-footer {
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+}
+
+.parkingmate_web-footer.inner-utils {
+  position: relative;
+}
+
+.parkingmate_FooterMenu_container {
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+  text-align: left;
+}
+
+.parkingmate_FooterMenu_bar {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_left, 
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_right {
+  display: flex;
+  flex-direction: row;
+}
+
+.Linker_btnMore {
+  position: relative;
+  outline: none;
+}
+
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_left .parkingmate_FooterMenu_menu, 
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_right .parkingmate_FooterMenu_menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  width: 50%;
+  height: 40px;
+  text-align: left;
+  color: #495057;
+  font-weight: 500;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.Linker_btnMore>.Linker_linkerIcon {
+  display: inline-block!important;
+  transform: rotate(90deg);
+  animation: Linker_activeHide__1p9gT .5s forwards;
+  margin-left: 4px;
+  color: rgba(0,0,0,.54);
+}
+
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_left .parkingmate_FooterMenu_menu i:before, 
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_left .parkingmate_FooterMenu_menu svg,
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_right .parkingmate_FooterMenu_menu i:before, 
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_right .parkingmate_FooterMenu_menu svg {
+  font-size: 16px;
+}
+
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_left .parkingmate_FooterMenu_menu.FooterMenu_bold, 
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_right .parkingmate_FooterMenu_menu.FooterMenu_bold {
+  font-weight: 700;
+}
+
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_right {
+  flex-wrap: wrap;
+}
+
+.parkingmate_FooterMenu_bar .parkingmate_FooterMenu_right {
+  flex-wrap: wrap;
+}
+
+.FooterMenu_openLinkIcon {
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: text-top;
+}
+
+footer.inner-utils .parkingmate_FooterContainer_container {
+  padding-bottom: 0;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_leftSection {
+    border-bottom: 1px solid #f2f4f6;
+    padding: 16px;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_leftSection .parkingmate_FooterContainer_title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #212529;
+  line-height: 28px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.parkingmate_FooterContainer_container 
+.parkingmate_FooterContainer_leftSection 
+.parkingmate_FooterContainer_title::before {
+  display: inline-block;
+  margin-right: 8px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAA8UExURUdwTCUoLSEmKyEmKSElKScsLiImKiElKSElKSEmKiElKiIlKyElKiInKyIlKSIlKiImKSQqLS1AQCElKRLEMhcAAAATdFJOUwAiVJbvEoz7vm7ZSaMxdqumGwUhhJyxAAABbElEQVRIx6VW2aKEIAglcwGrafH///VW0zSh0DKXR0Q8HDYB/i/OkB8QW0/GXVtXhCHtEpDGc/M+FdJWOpY6JEGCV5A1NiliG8n+lXQJVJhPbTqVesouXNjPNy7whCJ+hqrhZ7hkzBnkLg6RO8aP3X3R8Zlgv+zWzJWZPVBd03xu2IHf88vw9p+MLOyzzIdPznk9dDBuCO0IHa+S7QGeVQB/wMCz/65EYroIsLODAFGgFjn/MQb1Aq6cZikKLLscUliYNXo5NFnQK+VZCFn5eKE+vGY/c9SFUgeDYv8CGGOuHHKSuP/CfqVJvhAn6ISWRRWSARcF9aAFPRP+UoDKtEYFKmmJ0y4YoTTeNYtoZaQ6r5KgUN6nQkIDbTEQSZAqqUW3PpX89OIQ2Po0b4XjEMjGzPZCdzItx8KZ9b7UOXVUav13czl8++PRuG8fLpR2erSycjy/LUV97dbu0WLvq2dfh+r252S49zm5lD8cD271e3tWtwAAAABJRU5ErkJggg==) no-repeat 50%/16px 16px;
+  width: 16px;
+  height: 16px;
+  content: "";
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_leftSection .parkingmate_FooterContainer_directBtn {
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  margin: 8px 0;
+  cursor: pointer;
+  padding: 0;
+  width: 50%;
+  text-align: left;
+  color: #495057;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_leftSection 
+.parkingmate_FooterContainer_directBtn svg {
+  margin-left: 8px;
+  font-size: 16px;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_leftSection 
+.parkingmate_FooterContainer_directBtn .FooterContainer_customcenterBtn {
+  width: 100%;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_leftSection 
+.parkingmate_FooterContainer_enableTime {
+  line-height: 18px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 8px;
+  border-top: 1px solid #f2f4f6;
+  padding-top: 16px;
+  white-space: nowrap;
+  color: #868e96;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_leftSection 
+.parkingmate_FooterContainer_enableTime dt {
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_rightSection {
+  padding: 24px 16px 0;
+  line-height: 18px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.parkingmate_FooterInfo_info li {
+  display: inline;
+  color: #495057;
+}
+
+.parkingmate_FooterInfo_info li:after {
+  content: "|";
+  color: #dde2e6;
+  margin: 0 5px;
+}
+
+.parkingmate_FooterInfo_contactInfoWrap {
+  display: block;
+}
+
+.parkingmate_FooterInfo_contactInfoWrap .parkingmate_FooterInfo_contactInfo {
+  margin-top: 4px;
+}
+
+.parkingmate_web-footer a, .parkingmate_web-footer a[class*=icon-]:before, 
+.parkingmate_web-footer a [class*=icon-]:before {
+  transition: color .2s;
+}
+
+.parkingmate_FooterInfo_info li::after {
+  content: "|";
+  color: #dde2e6;
+  margin: 0 5px;
+}
+
+.pakringmate_FooterInfo_info li:last-child::after {
+  content: "";
+}
+
+.parkingmate_FooterInfo_copyright {
+  display: inline-block;
+  margin-top: 4px;
+  color: #000;
+  font-weight: 900;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_rightSection 
+.parkingmate_FooterContainer_infoNotice {
+  margin-top: 16px;
+  color: #868e96;
+}
+
+.parkingmate_FooterContainer_container .parkingmate_FooterContainer_rightSection 
+.parkingmate_FooterContainer_infoNotice p {
+  display: inline;
+}
+
+.parkingmate_FooterContainer_appStoreSection{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 32px;
+  margin-bottom: 160px;
+  gap: 37px;
+}
+
+.parkingmate_FooterContainer_appStoreSection a{
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #212529;
+}
+
+.parkingmate_FooterContainer_appStoreSection a::before{
+  color: #545a60;
+  font-size: 24px;
+  transition: color .2s;
+  margin-right: 4px;
+}
+
+.icon-google-play::before{
+  display: inline-block;
+  margin-top: -0.2em;
+  vertical-align: middle;
+  text-transform: none;
+  line-height: 1;
+  font-family: wadizicon!important;
+  font-weight: 400;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  content: "\e967";
+}
+
+.icon-apple::before{
+  display: inline-block;
+  margin-top: -0.2em;
+  vertical-align: middle;
+  text-transform: none;
+  line-height: 1;
+  font-family: wadizicon!important;
+  font-weight: 400;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  content: "\e90f";
+}
+

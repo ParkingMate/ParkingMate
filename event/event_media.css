@@ -1,0 +1,7 @@
+@media (min-width: 960px){
+  .parkingmate_pboard-wrap {
+    width: 500px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+}
