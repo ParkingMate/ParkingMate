@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="/css/fragment/header.css" />
   <link rel="stylesheet" href="/css/fragment/footer.css" />
 
-
   <!-- 헤더 스타일CSS -->
   <link rel="stylesheet" href="/css/getDirections/header.css">
 
@@ -34,7 +33,7 @@
   <!-- 공유버튼 JS -->
   <script src="/js/getDirections/share.js"></script>
 
-  <script src="/js/getDirections/eventSearch-bx.js"></script>
+  <script src="/js/getDirections/search-bx.js"></script>
 
   <!-- 카카오 공유 API -->
   <!-- <script src="../js/kakao-share.js"></script> -->
@@ -43,406 +42,413 @@
 </head>
 <body>
 
-  <!-- 바디 전체박스 -->
-  <div class="wrap">
+<!-- 바디 전체박스 -->
+<div class="wrap">
 
-    <!-- 로그인/회원가입 모달창 -->
-    <div class="parkingmate-modal-container">
-      <div class="parkingmate-modal-area">
-        <button class="parkingmate-close-button">
-          <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="parkingmate-close-button-icon" aria-hidden="true"><path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg>
-        </button>
-        <div class="parkingmate-account-container">
-          <h2 class="parkingmate-account-title">로그인</h2>
-          <section aria-labelledby="emailLogin">
-            <h3 class="parkingmate-bline-text">email 로그인</h3>
-            <form class="parkingmate-signInForm" th:action="@{/}" method="post" th:object="${userVO}">
-              <div class="parkingmate-signInForm-field" data-test-id="emailField">
-                <label class="parkingmate-bline-text">이메일</label>
-                <input th:field="*{UserEmail}" type="email" class="parkingmate-input input-email" placeholder="이메일 입력" title="이메일 입력">
-              </div>
-              <div class="parkingmate-signInForm-field" data-test-id="passwordField">
-                <label class="parkingmate-bline-text">비밀번호</label>
-                <input th:field="*{UserPassword}" type="password" class="parkingmate-input input-password" placeholder="비밀번호 입력" title="비밀번호 입력">
-              </div>
-              <div class="parkingmate-login-action">
-                <p class="parkingmate-forgot">
-                  <a href="/login/find-id">로그인 정보를 잊으셨나요?</a>
-                </p>
-              </div>
-              <button class="parkingmate-button parkingmate-login-button" type="button">
+  <!-- 로그인/회원가입 모달창 -->
+  <div class="parkingmate-modal-container">
+    <div class="parkingmate-modal-area">
+      <button class="parkingmate-close-button">
+        <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="parkingmate-close-button-icon" aria-hidden="true"><path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg>
+      </button>
+      <div class="parkingmate-account-container">
+        <h2 class="parkingmate-account-title">로그인</h2>
+        <section aria-labelledby="emailLogin">
+          <h3 class="parkingmate-bline-text">email 로그인</h3>
+          <form class="parkingmate-signInForm">
+            <div class="parkingmate-signInForm-field" data-test-id="emailField">
+              <label class="parkingmate-bline-text">이메일</label>
+              <input type="email" class="parkingmate-input input-email" placeholder="이메일 입력" title="이메일 입력">
+            </div>
+            <div class="parkingmate-signInForm-field" data-test-id="passwordField">
+              <label class="parkingmate-bline-text">비밀번호</label>
+              <input type="password" class="parkingmate-input input-password" placeholder="비밀번호 입력" title="비밀번호 입력">
+            </div>
+            <div class="parkingmate-login-action">
+              <p class="parkingmate-forgot">
+                <a href="/login/find-id">로그인 정보를 잊으셨나요?</a>
+              </p>
+            </div>
+            <button class="parkingmate-button parkingmate-login-button" type="submit">
                   <span>
                     <span class="parkingmate-button-children">로그인</span>
                   </span>
-              </button>
-            </form>
-          </section>
-          <section aria-labelledby="SNSLogin">
-            <h3 class="parkingmate-bline-text">SNS 로그인</h3>
-            <div>
-
-              <a href="https://kauth.kakao.com/oauth/authorize?client_id=1fd38d790204d58dbce4c9b70a0f5013&redirect_uri=http://localhost:10000/kakao/login&response_type=code">
-                <button class="parkingmate-button parkingmate-kakao-button" aria-label="카카오로 인증하기">
+            </button>
+          </form>
+        </section>
+        <section aria-labelledby="SNSLogin">
+          <h3 class="parkingmate-bline-text">SNS 로그인</h3>
+          <div>
+            <button class="parkingmate-button parkingmate-kakao-button" aria-label="카카오로 인증하기">
                   <span>
                     <span class="parkingmate-button-children">
                       <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="parkingmate-kakao-button-svg" aria-hidden="true"><path d="M16 4.64c-6.96 0-12.64 4.48-12.64 10.08 0 3.52 2.32 6.64 5.76 8.48l-.96 4.96 5.44-3.6 2.4.16c6.96 0 12.64-4.48 12.64-10.08S22.96 4.56 16 4.64z"></path></svg>
                       카카오로 시작하기
                     </span>
                   </span>
-                </button>
+            </button>
+          </div>
+        </section>
+        <div class="parkingmate-signUpMessage">
+          <p>
+            아직 주차메이트 계정이 없나요?
+            <a href="/login/sign-up" data-test-id="signUpLink">회원가입</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="parkingmate-modal-background"></div>
+  </div>
+
+  <!-- 헤더박스 -->
+  <th:block th:replace="~{fragment/main-header :: mainHeader}"></th:block>
+  <th:block th:replace="~{fragment/footer-button :: footer-button}"></th:block>
+
+
+  <!-- 메인박스 -->
+  <div class="main">
+
+    <!-- 카카오 지도 API -->
+    <div id="map" style="width:100%;height:100vh;"></div>
+
+    <!-- 내 위치 버튼 -->
+    <button type="button" class="my-location-button" id="getMyPositionBtn" onclick="getCurrentPosBtn()" >
+
+      <!-- 내 위치 이미지 -->
+      <img src="/images/location-black.png" class="my-location-image">
+
+    </button>
+
+    <!-- 밑에서 올라오는 페이지 -->
+    <div class="footer-page">
+
+      <!-- 페이지 닫는 x 버튼 div -->
+      <div class="close-page-bx">
+
+        <!-- 페이지 닫은 버튼 -->
+        <button class="close-page-btn" type="button">
+
+          <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq MobileHeadupBanner_closeIcon__3PUoF" aria-hidden="true"><path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg>
+
+        </button>
+
+      </div>
+
+      <!-- 이미지 div -->
+      <div class="imagebx">
+
+        <!-- 이미지 span -->
+        <div class="pk-img">
+          <img src="/images/park-exam.jpg" alt="">
+        </div>
+
+      </div>
+
+      <!-- 밑에서 올라오는 페이지 사진 아래 전체박스 -->
+      <div class="footer-page-ibx">
+
+        <!-- 주차장 제목, 공유 -->
+        <div class="parking-name-share">
+
+          <!-- 주차장 이름 -->
+          <div class="parking-name">
+
+            <!-- 주차장 이름 텍스트 -->
+            <p  id="pakring_name" class="parking-name-p">
+              어디어디어디 주차장
+            </p>
+          </div>
+
+          <!-- 주차장 공유 버튼 -->
+          <div class="parking-share">
+
+            <!-- 주차장 공유 -->
+            <p class="parking-share-p">
+
+              주차장 공유
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- 별, 점수, 리뷰갯수, 로드뷰 -->
+        <ul class="star-point-roadview">
+
+          <!-- 별모양 박스 -->
+          <li class="star-box">
+
+            <!-- 별 이미지 -->
+            <img src="/images/star.png" class="star-img">
+
+          </li>
+
+          <!-- 리뷰 점수 -->
+          <li class="point-box">
+
+            <!-- 리뷰 텍스트 -->
+            <p class="point-p">4.7</p>
+
+          </li>
+
+          <!-- 리뷰 갯수 -->
+          <li class="review-number">
+
+            <!-- 리뷰 갯수 텍스트 -->
+            <p class="review-p">(200)</p>
+
+          </li>
+
+          <!-- 로드뷰 박스 -->
+          <li class="loadview-box">
+
+            <!-- 로드뷰 텍스트 -->
+            <p class="loadview-p">
+
+              <a href="/get-directions/road-view">
+                로드뷰
               </a>
 
-            </div>
-          </section>
-          <div class="parkingmate-signUpMessage">
-            <p>
-              아직 주차메이트 계정이 없나요?
-              <a href="/login/sign-up" data-test-id="signUpLink">회원가입</a>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="parkingmate-modal-background"></div>
-    </div>
-
-    <!-- 헤더박스 -->
-    <th:block th:replace="~{fragment/main-header :: mainHeader}"></th:block>
-    <th:block th:replace="~{fragment/footer-button :: footer-button}"></th:block>
-
-
-    <!-- 메인박스 -->
-    <div class="main">
-
-      <!-- 카카오 지도 API -->
-      <div id="map" style="width:100%;height:100vh;"></div>
-
-      <!-- 내 위치 버튼 -->
-      <button type="button" class="my-location-button" id="getMyPositionBtn" onclick="getCurrentPosBtn()" >
-
-        <!-- 내 위치 이미지 -->
-        <img src="/images/location-black.png" class="my-location-image">
-
-      </button>
-
-      <!-- 밑에서 올라오는 페이지 -->
-      <div class="footer-page">
-
-        <!-- 페이지 닫는 x 버튼 div -->
-        <div class="close-page-bx">
-
-          <!-- 페이지 닫은 버튼 -->
-          <button class="close-page-btn" type="button">
-
-            <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon_icon__3VTbq MobileHeadupBanner_closeIcon__3PUoF" aria-hidden="true"><path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg>
-
-          </button>
-
-        </div>
-        
-        <!-- 이미지 div -->
-        <div class="imagebx">
-          
-          <!-- 이미지 span -->
-          <div class="pk-img">
-            <img src="/images/park-exam.jpg" alt="">
-          </div>
-
-        </div>
-
-        <!-- 밑에서 올라오는 페이지 사진 아래 전체박스 -->
-        <div class="footer-page-ibx">
-          
-          <!-- 주차장 제목, 공유 -->
-          <div class="parking-name-share">
-
-            <!-- 주차장 이름 -->
-            <div class="parking-name">
-
-              <!-- 주차장 이름 텍스트 -->
-              <p class="parking-name-p">
-                어디어디어디 주차장
-              </p>
-            </div>
-
-            <!-- 주차장 공유 버튼 -->
-            <div class="parking-share">
-
-              <!-- 주차장 공유 -->
-              <p class="parking-share-p">
-
-                주차장 공유
-              </p>
-
-            </div>
-
-          </div>
-
-          <!-- 별, 점수, 리뷰갯수, 로드뷰 -->
-          <ul class="star-point-roadview">
-
-            <!-- 별모양 박스 -->
-            <li class="star-box">
-
-              <!-- 별 이미지 -->
-              <img src="/images/star.png" class="star-img">
-
-            </li>
-
-            <!-- 리뷰 점수 -->
-            <li class="point-box">
-
-              <!-- 리뷰 텍스트 -->
-              <p class="point-p">4.7</p>
-
-            </li>
-
-            <!-- 리뷰 갯수 -->
-            <li class="review-number">
-
-              <!-- 리뷰 갯수 텍스트 -->
-              <p class="review-p">(200)</p>
-
-            </li>
-
-            <!-- 로드뷰 박스 -->
-            <li class="loadview-box">
-
-              <!-- 로드뷰 텍스트 -->
-              <p class="loadview-p">
-                
-                <a href="/get-directions/road-view">
-                  로드뷰
-                </a>
-
-              </p>
-
-            </li>
-
-          </ul>
-
-          <!-- 가격박스 -->
-          <div class="price-box">
-
-            <!-- 가격 숫자 -->
-            <p class="price-number">29,000</p>
-
-            <!-- 가격 뒤 원 -->
-            <p class="price-number2">원</p>
-
-          </div>
-
-          <!-- 주차장 설명박스 -->
-          <div class="parking-content-box">
-
-            <!-- 주차장 설명 -->
-            <p class="parking-content">
-              경기도 성남시 탁구 우동 주차장-주소
             </p>
 
-          </div>
+          </li>
 
-          <!-- 예약하기 버튼 박스 -->
-          <div class="reservation-button">
+        </ul>
 
-            <!-- 예약하기 텍스트 -->
-            <p>예약하기</p>
+        <!-- 가격박스 -->
+        <div class="price-box">
 
-          </div>
+          <!-- 가격 숫자 -->
+          <p class="price-number">29,000</p>
+
+          <!-- 가격 뒤 원 -->
+          <p class="price-number2">원</p>
+
+        </div>
+
+        <!-- 주차장 설명박스 -->
+        <div class="parking-content-box">
+
+          <!-- 주차장 설명 -->
+          <p class="parking-content">
+            경기도 성남시 탁구 우동 주차장-주소
+          </p>
+
+        </div>
+
+        <!-- 예약하기 버튼 박스 -->
+        <div class="reservation-button">
+
+          <!-- 예약하기 텍스트 -->
+          <p>예약하기</p>
 
         </div>
 
       </div>
-      
+
     </div>
 
-    <!-- 공유박스 -->
-    <div class="share-bx">
-      
-      <div class="share-header-container">
-        <h3>공유</h3>
+  </div>
+
+  <!-- 공유박스 -->
+  <div class="share-bx">
+
+    <div class="share-header-container">
+      <h3>공유</h3>
+    </div>
+
+    <div class="share-main-container">
+
+      <div>
+        <svg viewBox="0 0 36 36" focusable="false" style="pointer-events: none; display: block; width: 50px;">
+          <circle cx="18" cy="18" r="17.5" stroke="#E7E7E7" fill="#F4F4F4" stroke-width=".5"></circle>
+          <path d="m21.41,23.29l-0.71,-0.71l4.59,-4.58l-4.59,-4.59l0.71,-0.71l5.3,5.3l-5.3,5.29zm-6.12,-0.7l-4.58,-4.59l4.59,-4.59l-0.71,-0.7l-5.3,5.29l5.29,5.29l0.71,-0.7z" fill="#606060"></path>
+        </svg>
+        <p>링크복사</p>
       </div>
 
-      <div class="share-main-container">
-
-        <div>
-          <svg viewBox="0 0 36 36" focusable="false" style="pointer-events: none; display: block; width: 50px;">
-            <circle cx="18" cy="18" r="17.5" stroke="#E7E7E7" fill="#F4F4F4" stroke-width=".5"></circle>
-            <path d="m21.41,23.29l-0.71,-0.71l4.59,-4.58l-4.59,-4.59l0.71,-0.71l5.3,5.3l-5.3,5.29zm-6.12,-0.7l-4.58,-4.59l4.59,-4.59l-0.71,-0.7l-5.3,5.29l5.29,5.29l0.71,-0.7z" fill="#606060"></path>
-          </svg>
-          <p>링크복사</p>
-        </div>
-
-        <div>
-          <svg viewBox="0 0 60 60" focusable="false" style="pointer-events: none; display: block; width: 50px;">
-            <g fill-rule="nonzero" fill="none">
-              <path d="M28.486325 59.9692983c-6.6364044-.569063-11.5630204-2.3269562-16.3219736-5.8239328C4.44376336 48.4721167 0 39.6467923 0 29.9869344 0 15.1115596 10.506778 2.79838844 25.2744118.36718043 31.302519-.62523147 37.978265.41644488 43.5623517 3.2208101 57.138627 10.0389054 63.3436513 25.7618627 58.2050226 40.3239688c-3.5279559 9.9977054-12.7897094 17.6177847-23.3910729 19.2449379-2.0856252.3201125-5.0651487.5086455-6.3276247.4003916z" fill="#FFE812"></path>
-              <path d="M30.5 14C19.730375 14 11 20.69445394 11 28.952339c0 5.3388968 3.649875 10.0235376 9.14025 12.6688251-.2986875 1.0018068-1.9194375 6.4448229-1.9839375 6.8724233 0 0-.0388125.3212929.175125.4438292.2139375.1225362.4655625.0273518.4655625.0273518.6135-.0833319 7.1143125-4.5241766 8.2395-5.2953162 1.1240625.1548115 2.2815.2352259 3.4635.2352259 10.769625 0 19.5-6.6942716 19.5-14.9523391C50 20.69445394 41.269625 14 30.5 14z" fill="#000"></path>
-              <path d="M20.11212489 33c-.64033041 0-1.16107056-.4353882-1.16107056-.9707294v-6.0386824h-1.81165709C16.51106456 25.9905882 16 25.5440188 16 24.9952941S16.51125807 24 17.13939724 24h5.94545526c.6283327 0 1.1393973.4465694 1.1393973.9952941s-.5112581.9952941-1.1393973.9952941h-1.8116571v6.0386824c0 .5353412-.5207401.9707294-1.16107051.9707294zm10.18104071-.0132141c-.4841664 0-.8545479-.1721224-.9662042-.4489412l-.5749235-1.3176847-3.5404911-.0001694-.5753105 1.3185318c-.1112692.2763105-.4814572.4482635-.9656237.4482635-.2546749.0002283-.5064123-.0476164-.7380538-.140273-.3200685-.1292611-.6277522-.484687-.2751737-1.4433882l2.7772807-6.3996988c.1956404-.48672.789915-.9881788 1.546159-1.0032565.7583726.0149082 1.3526472.5165365 1.5486746 1.004273l2.7761197 6.3968188c.3533525.9609035.0456688 1.3164988-.2743997 1.4454212-.2316966.0924919-.4834067.1402736-.7380538.1401035-.0001935 0 0 0 0 0zm-2.1516573-3.5671341l-1.1597159-2.8842353-1.159716 2.8842353h2.3194319zm5.0326604 3.4321129c-.6136258 0-1.1126927-.4181082-1.1126927-.9317647v-6.9035294c0-.5605835.5317704-1.0164706 1.1852596-1.0164706s1.1852595.4558871 1.1852595 1.0164706v5.9717647H36.89927c.6136258 0 1.1126926.4181082 1.1126926.9317647s-.4990668.9317647-1.1126926.9317647h-3.7251013zm6.4505209.1350212c-.6403304 0-1.1610705-.4558871-1.1610705-1.0164706v-6.9538447c0-.5605835.5207401-1.0164706 1.1610705-1.0164706.6403305 0 1.1610706.4558871 1.1610706 1.0164706v2.1847341l3.2393869-2.8359529c.1666136-.1458636.395538-.2261647.6440071-.2261647.2898806 0 .5809223.10944.7990101.3001976.2033808.1778824.3247127.4067577.3413547.6444424.0168355.2397176-.0743085.4594447-.2562096.6188611l-2.6458863 2.3160283 2.8579752 3.3147106c.1863887.2147949.2666819.4860225.2229256.7530353-.0418059.2671791-.2040382.5085898-.4504954.6703623-.2007827.1336077-.4461848.2056972-.698384.2051577-.3648049.0014863-.7088533-.1483913-.9275018-.4040471l-2.722904-3.1585129-.4028915.3527152v2.2177695c-.0007462.5613249-.5202804 1.016232-1.1614576 1.0169788z" fill="#FFE812"></path>
-            </g>
-          </svg>
-          <p>카카오톡</p>
-        </div>
-
-        <div>
-          <svg viewBox="0 0 60 60" focusable="false" style="pointer-events: none; display: block; width: 50px;">
-            <g fill="none" fill-rule="evenodd">
-              <path d="M28.4863253 59.9692983c-6.6364044-.569063-11.5630204-2.3269561-16.3219736-5.8239327C4.44376366 48.4721168 3e-7 39.6467924 3e-7 29.9869344c0-14.8753747 10.506778-27.18854591 25.2744118-29.61975392 6.0281072-.9924119 12.7038532.04926445 18.2879399 2.85362966C57.1386273 10.0389054 63.3436516 25.7618627 58.2050229 40.3239688 54.677067 50.3216743 45.4153135 57.9417536 34.81395 59.5689067c-2.0856252.3201125-5.0651487.5086456-6.3276247.4003916z" fill="#3B5998" fill-rule="nonzero"></path>
-              <path d="M25.7305108 45h5.4583577V30.0073333h4.0947673l.8098295-4.6846666h-4.9045968V21.928c0-1.0943333.7076019-2.2433333 1.7188899-2.2433333h2.7874519V15h-3.4161354v.021c-5.3451414.194-6.4433395 3.2896667-6.5385744 6.5413333h-.0099897v3.7603334H23v4.6846666h2.7305108V45z" fill="#FFF"></path>
-            </g>
-          </svg>
-          <p>페이스북</p>
-        </div>
-
-
+      <div>
+        <svg viewBox="0 0 60 60" focusable="false" style="pointer-events: none; display: block; width: 50px;">
+          <g fill-rule="nonzero" fill="none">
+            <path d="M28.486325 59.9692983c-6.6364044-.569063-11.5630204-2.3269562-16.3219736-5.8239328C4.44376336 48.4721167 0 39.6467923 0 29.9869344 0 15.1115596 10.506778 2.79838844 25.2744118.36718043 31.302519-.62523147 37.978265.41644488 43.5623517 3.2208101 57.138627 10.0389054 63.3436513 25.7618627 58.2050226 40.3239688c-3.5279559 9.9977054-12.7897094 17.6177847-23.3910729 19.2449379-2.0856252.3201125-5.0651487.5086455-6.3276247.4003916z" fill="#FFE812"></path>
+            <path d="M30.5 14C19.730375 14 11 20.69445394 11 28.952339c0 5.3388968 3.649875 10.0235376 9.14025 12.6688251-.2986875 1.0018068-1.9194375 6.4448229-1.9839375 6.8724233 0 0-.0388125.3212929.175125.4438292.2139375.1225362.4655625.0273518.4655625.0273518.6135-.0833319 7.1143125-4.5241766 8.2395-5.2953162 1.1240625.1548115 2.2815.2352259 3.4635.2352259 10.769625 0 19.5-6.6942716 19.5-14.9523391C50 20.69445394 41.269625 14 30.5 14z" fill="#000"></path>
+            <path d="M20.11212489 33c-.64033041 0-1.16107056-.4353882-1.16107056-.9707294v-6.0386824h-1.81165709C16.51106456 25.9905882 16 25.5440188 16 24.9952941S16.51125807 24 17.13939724 24h5.94545526c.6283327 0 1.1393973.4465694 1.1393973.9952941s-.5112581.9952941-1.1393973.9952941h-1.8116571v6.0386824c0 .5353412-.5207401.9707294-1.16107051.9707294zm10.18104071-.0132141c-.4841664 0-.8545479-.1721224-.9662042-.4489412l-.5749235-1.3176847-3.5404911-.0001694-.5753105 1.3185318c-.1112692.2763105-.4814572.4482635-.9656237.4482635-.2546749.0002283-.5064123-.0476164-.7380538-.140273-.3200685-.1292611-.6277522-.484687-.2751737-1.4433882l2.7772807-6.3996988c.1956404-.48672.789915-.9881788 1.546159-1.0032565.7583726.0149082 1.3526472.5165365 1.5486746 1.004273l2.7761197 6.3968188c.3533525.9609035.0456688 1.3164988-.2743997 1.4454212-.2316966.0924919-.4834067.1402736-.7380538.1401035-.0001935 0 0 0 0 0zm-2.1516573-3.5671341l-1.1597159-2.8842353-1.159716 2.8842353h2.3194319zm5.0326604 3.4321129c-.6136258 0-1.1126927-.4181082-1.1126927-.9317647v-6.9035294c0-.5605835.5317704-1.0164706 1.1852596-1.0164706s1.1852595.4558871 1.1852595 1.0164706v5.9717647H36.89927c.6136258 0 1.1126926.4181082 1.1126926.9317647s-.4990668.9317647-1.1126926.9317647h-3.7251013zm6.4505209.1350212c-.6403304 0-1.1610705-.4558871-1.1610705-1.0164706v-6.9538447c0-.5605835.5207401-1.0164706 1.1610705-1.0164706.6403305 0 1.1610706.4558871 1.1610706 1.0164706v2.1847341l3.2393869-2.8359529c.1666136-.1458636.395538-.2261647.6440071-.2261647.2898806 0 .5809223.10944.7990101.3001976.2033808.1778824.3247127.4067577.3413547.6444424.0168355.2397176-.0743085.4594447-.2562096.6188611l-2.6458863 2.3160283 2.8579752 3.3147106c.1863887.2147949.2666819.4860225.2229256.7530353-.0418059.2671791-.2040382.5085898-.4504954.6703623-.2007827.1336077-.4461848.2056972-.698384.2051577-.3648049.0014863-.7088533-.1483913-.9275018-.4040471l-2.722904-3.1585129-.4028915.3527152v2.2177695c-.0007462.5613249-.5202804 1.016232-1.1614576 1.0169788z" fill="#FFE812"></path>
+          </g>
+        </svg>
+        <p>카카오톡</p>
       </div>
 
+      <div>
+        <svg viewBox="0 0 60 60" focusable="false" style="pointer-events: none; display: block; width: 50px;">
+          <g fill="none" fill-rule="evenodd">
+            <path d="M28.4863253 59.9692983c-6.6364044-.569063-11.5630204-2.3269561-16.3219736-5.8239327C4.44376366 48.4721168 3e-7 39.6467924 3e-7 29.9869344c0-14.8753747 10.506778-27.18854591 25.2744118-29.61975392 6.0281072-.9924119 12.7038532.04926445 18.2879399 2.85362966C57.1386273 10.0389054 63.3436516 25.7618627 58.2050229 40.3239688 54.677067 50.3216743 45.4153135 57.9417536 34.81395 59.5689067c-2.0856252.3201125-5.0651487.5086456-6.3276247.4003916z" fill="#3B5998" fill-rule="nonzero"></path>
+            <path d="M25.7305108 45h5.4583577V30.0073333h4.0947673l.8098295-4.6846666h-4.9045968V21.928c0-1.0943333.7076019-2.2433333 1.7188899-2.2433333h2.7874519V15h-3.4161354v.021c-5.3451414.194-6.4433395 3.2896667-6.5385744 6.5413333h-.0099897v3.7603334H23v4.6846666h2.7305108V45z" fill="#FFF"></path>
+          </g>
+        </svg>
+        <p>페이스북</p>
+      </div>
+
+
     </div>
-    </div>
+
+  </div>
+</div>
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e5db0a27e4f46752911719172477ebc&libraries=services"></script>
 
 <!-- 카카오 지도 API -->
 <script th:inline="javascript">
-  
+
   // 카카오 지도 API
   // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+  var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
-// x 버튼 선택
-const xBtn = document.querySelector(".close-page-btn");
+  // x 버튼 선택
+  const xBtn = document.querySelector(".close-page-btn");
 
-// 밑에서 올라오는 페이지 선택
-const footerPage = document.querySelector(".footer-page");
+  // 밑에서 올라오는 페이지 선택
+  const footerPage = document.querySelector(".footer-page");
 
-// 밑에서 올라오는 페이지 위치
-const footerPageOpen = document.querySelector(".open")
+  // 밑에서 올라오는 페이지 위치
+  const footerPageOpen = document.querySelector(".open");
 
-// 밑에서 올라오는 페이지 안 제목
-const footerPageTitle = document.querySelector(".parking-name-p")
+  // 밑에서 올라오는 페이지 안 제목
+  // const footerPageTitle = document.querySelector(".parking-name-p");
+  const footerPageTitle = document.getElementById("pakring_name");
+  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+          };
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
+  // 지도를 생성합니다
+  var map = new kakao.maps.Map(mapContainer, mapOption);
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+  // 장소 검색 객체를 생성합니다
+  var ps = new kakao.maps.services.Places(map);
 
-// 장소 검색 객체를 생성합니다
-var ps = new kakao.maps.services.Places(map); 
+  // 카테고리로 주차장을 검색합니다
+  ps.categorySearch('PK6', placesSearchCB, {useMapBounds:true});
 
-// 카테고리로 주차장을 검색합니다
-ps.categorySearch('PK6', placesSearchCB, {useMapBounds:true}); 
-
-// 키워드 검색 완료 시 호출되는 콜백함수 입니다
-function placesSearchCB (data, status, pagination) {
+  // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+  function placesSearchCB (data, status, pagination,result) {
     if (status === kakao.maps.services.Status.OK) {
-        for (var i=0; i<data.length; i++) {
-            displayMarker(data[i]);    
-        }       
-    }
-}
 
-// 지도에 마커를 표시하는 함수입니다
-  var count12 = 0;
-function displayMarker(place) {
-  // console.log(place);
-  // 마커를 생성하고 지도에 표시합니다
-  var markers = new kakao.maps.Marker({
-    map: map,
-    position: new kakao.maps.LatLng(place.y, place.x)
-  });
+      // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+      // LatLngBounds 객체에 좌표를 추가합니다
+      var bounds = new kakao.maps.LatLngBounds();
+      // console.log(bounds);
+      // console.log(SearchBox.value);
+      // console.log(data[0]);
+      for (var i=0; i<1; i++) {
 
-  // console.log(markers);
-
-  const markerlocation = document.querySelector("#map > div:nth-child(1) > div > div:nth-child(6) > div:nth-child(7)");
-  const markerlocationname = document.querySelector("#ParkingLocation1");
-  // #map > div > div > div > div:last-child
-  // 마커의 상위 개체
-
-  var allitems = document.querySelectorAll("#map > div:nth-child(1) > div > div:nth-child(6):last-child");
-
-  // for (var i = 0; i < 1; i++) {
-  //
-  //   allitems.addEventListener("click",click, false);
-  // }
-  allitems.forEach(function (allitem){
-      allitem.addEventListener("click",(e) => {
-        console.log(count12);
-        if (count12 === 0){
-          alert("click");
+        //사용자 검색 값이 존재하면
+        if(SearchBox.value){
+          for (var i=0; i<parkingsCount; i++){
+            // if(parkings[i].ParkingAddress.includes(SearchBox.value)){
+            displayMarker(parkings[i]);
+            // console.log(parkings[i]);
+            // }
+          }
         }
+        bounds.extend(new kakao.maps.LatLng(data[0].y, data[0].x));
 
-
-      });
-  })
-  count12++; //카운트가 1만 증가되어야하는데 8이 증가함 아!! 카운트를 호출하는 부분에 넣어야함!!
-  //
-  // function click(e){
-  //  if(count == 0){
-  //    alert("click");
-  //  }
-  //
-  // }
-  // 마커에 클릭이벤트를 등록합니다
-  // markerlocation.addEventListener("click", (e) => {
-  //   console.log(e.target);
-  //
-  //   for (var i = 0; i < parkingsCount; i++) {
-  //
-  //     .forEach((element) => {
-  //       // console.log(element.innerHTML);
-  //     })
-  //     // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-  //     infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.ParkingName + '</div>');
-  //
-  //     break;
-  //
-  //
-  //   }
-  //
-  //   // footerPage.classList.add("open");
-  //   infowindow.open(map, markers);
-  //   footerPageTitle.textContent = place.ParkingName;
-  //   // let placeNameLength = place.place_name.length;
-  //   // console.log(placeNameLength);
-  //   footerPage.style.position = "absolute"
-  //   footerPage.style.top = "2px";
-  // });
-  // console.log("hihihi4");
-  // 하단에서 위로 올라오는 페이지 삭제 함수
-  function handleDocumentClick(event) {
-    if (!footerPage.contains(event.target)) {
-      // footerPage.classList.remove("open"); // 클래스 삭제
-      // footerPage.style.position = "fixed"
-      // footerPage.style.top = "100%"
-      infowindow.close(map, markers);
+        // bounds.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
+        // console.log("parking : " + parkings[i].ParkingAddress);
+      }
+      // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+      map.setBounds(bounds);
     }
   }
 
-  // console.log("hihihi5");
-  // x 버튼 누를시 페이지 내려감
-  xBtn.addEventListener("click", function () {
-    footerPage.style.top = "100%"
-    setTimeout(() => {
-      footerPage.style.position = "fixed"
+  // 지도에 마커를 표시하는 함수입니다
+  var count12 = 0;
+  function displayMarker(place) {
+    // console.log(place);
+    // 마커를 생성하고 지도에 표시합니다
+    var markers = new kakao.maps.Marker({
+      map: map,
+      position: new kakao.maps.LatLng(place.y, place.x)
+    });
 
-    }, 600);
-  })
-  // console.log("hihihi6");
-  document.addEventListener("click", handleDocumentClick);
-  // console.log("hihihi7");
+    const markerlocation = document.querySelector("#map > div:nth-child(1) > div > div:nth-child(6) > div:nth-child(7)");
+    const markerlocationname = document.querySelectorAll("#ParkingLocation1");
 
-}
+    // 마커 전체
+    var allitems = document.querySelectorAll("#map > div:nth-child(1) > div > div:nth-child(6):last-child");
+
+    // 각각의 marker 클릭 시의 이벤트
+    allitems.forEach(function (allitem){
+      // console.log(parkingName1);
+      allitem.addEventListener("click",(markers) => { //하나밖에 안나오는 이유 예상 : db에 8개의 데이터가 들어갔는데 8개가 한번에 돌아서 다음 클릭 시 데이터가 없어서 안나오는 것 같음!!!
+        // console.log(markers);
+        if (count12 === 0){
+
+          for (var k = 0; k < parkingsCount; k++){
+            // console.log(footerPageTitle.innerHTML);
+            // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+            // infowindow.setContent('<div style="padding:5px;font-size:12px;">' + markerlocationname[k].ParkingName + '</div>');
+
+            // console.log(markerlocationname[k].ParkingName)
+            // if(place.ParkingName === markerlocationname[k].innerText){
+            //   console.log(markerlocationname[k].innerText);
+            // }
+            // console.log(markerlocationname[1].innerText); //parking1 값을 가져오는 방법을 찾아라!!
+            footerPageTitle.innerHTML = place.ParkingName;
+            footerPage.classList.add("open");
+            infowindow.open(map, markers);
+
+
+            let placeNameLength = place.ParkingName.length;
+            // console.log(placeNameLength);
+            footerPage.style.position = "absolute"
+            footerPage.style.top = "2px";
+          }
+
+        }
+        if(count12 >= 0){
+          count12++;
+        }
+        if(count12 === 8){
+          count12 = 0;
+        }
+      });
+    })
+
+    // 하단에서 위로 올라오는 페이지 삭제 함수
+    function handleDocumentClick(event) {
+      if (footerPage.contains(event.target)) {
+        // footerPage.classList.remove("open"); // 클래스 삭제
+        // footerPage.style.position = "fixed"
+        // footerPage.style.top = "100%"
+        infowindow.close(map, markers);
+      }
+    }
+
+    // console.log("hihihi5");
+    // x 버튼 누를시 페이지 내려감
+    xBtn.addEventListener("click", function () {
+      footerPage.style.top = "100%"
+      footerPage.style = "";
+      footerPage.className = "footer-page";
+      setTimeout(() => {
+        // footerPage.style.position = "fixed"
+
+      }, 600);
+      document.addEventListener("click", handleDocumentClick);
+    })
+    // console.log("hihihi6");
+    // console.log("hihihi7");
+
+  }
 
   // 주소로 장소 표시
   // 주소-좌표 변환 객체를 생성합니다
   var geocoder = new kakao.maps.services.Geocoder();
   // 검색할 장소 입력 박스
-  var SearchBox = document.querySelector("body > div > div.eventSearch-all > div.eventSearch-bx.sb-2 > div.eventSearch-content-bx > input[type=text]");
+  var SearchBox = document.querySelector("body > div > div.search-all > div.search-bx.sb-2 > div.search-content-bx > input[type=text]");
   // 검색 버튼
-  var Searchicon = document.querySelector("body > div > div.eventSearch-all > div.eventSearch-bx.sb-2 > button");
+  var Searchicon = document.querySelector("body > div > div.search-all > div.search-bx.sb-2 > button");
   // db내부 객체 값
   var parkings = [[${parkings}]];
   // db내부 객체 총 수량
@@ -492,25 +498,21 @@ function displayMarker(place) {
   for (var i = 0; i<parkingsCount;) {
     geocoder.addressSearch(parkings[i].ParkingAddress, function(result, status) {
 
-      // //   여기다가 작성해야되는데 parkings[i].ParkingAddress값이랑 SearchBox.value값을 가져오지 못함... 왜???
-      // }
       // 정상적으로 검색이 완료됐으면
       if (status === kakao.maps.services.Status.OK) {
-        // console.log(parkings[i].ParkingAddress);
 
         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        // console.log("result :" + coords);
+
         // 결과값으로 받은 위치를 마커로 표시합니다
         var marker = new kakao.maps.Marker({
           map: map,
           position: coords
         });
-        var parkingName1 = parkings[k].ParkingName;
+        const parkingName1 = parkings[k].ParkingName;
         var infoclick = document.querySelector("#ParkingLocation1");
-        // console.log(parkingName1);
+
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-          // i로 접근했을 때 ParkingName이 안나옴..... 숫자로 접근하면 나옴..., 이거랑 검색했을 때 검색 값이랑 매치되는 주차장 위치만 나와야함!!
           content: ('<div id="ParkingLocation1"  style="width:150px;text-align:center;padding:6px 0;">' + parkingName1 + '</div>')
         });
 
@@ -524,69 +526,11 @@ function displayMarker(place) {
     i++;
   }
 
-  // 키워드 검색 완료 시 호출되는 콜백함수 입니다
-  function placesSearchCB (data, status, pagination,result) {
-    if (status === kakao.maps.services.Status.OK) {
-
-      // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-      // LatLngBounds 객체에 좌표를 추가합니다
-      var bounds = new kakao.maps.LatLngBounds();
-      // console.log(bounds);
-      // console.log(SearchBox.value);
-      // console.log(data[0]);
-      for (var i=0; i<1; i++) {
-
-        //사용자 검색 값이 존재하면
-        if(SearchBox.value){
-          for (var i=0; i<parkingsCount; i++){
-            // if(parkings[i].ParkingAddress.includes(SearchBox.value)){
-                displayMarker(parkings[i]);
-                // console.log(parkings[i]);
-            // }
-          }
-        }
-          bounds.extend(new kakao.maps.LatLng(data[0].y, data[0].x));
-
-        // bounds.extend(new kakao.maps.LatLng(result[0].y, result[0].x));
-        // console.log("parking : " + parkings[i].ParkingAddress);
-      }
-      // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-      map.setBounds(bounds);
-    }
-  }
-
   Searchicon.addEventListener("click", (e) => {
     const SearchVal = SearchBox.value;
     // 키워드로 장소를 검색합니다
     ps.keywordSearch(SearchVal, placesSearchCB);
 
-  })
-
-  // const button = document.querySelector(".parkingmate-signInForm button");
-  // const form = document.querySelector(".parkingmate-signInForm");
-  // const inputs = document.querySelectorAll(".parkingmate-signInForm input");
-  //
-  // button.addEventListener("click", (e) => {
-  //   for(inp of inputs){
-  //     if(!inp.value){
-  //       return;
-  //     }
-  //   }
-  //   form.submit();
-  // })
-</script>
-<script>
-  const button = document.querySelector(".parkingmate-signInForm button");
-  const form = document.querySelector(".parkingmate-signInForm");
-  const inputs = document.querySelectorAll(".parkingmate-signInForm input");
-
-  button.addEventListener("click", (e) => {
-    for(inp of inputs){
-      if(!inp.value){
-        return;
-      }
-    }
-    form.submit();
   })
 </script>
 <script type="text/javascript" src="/js/main-page/modal.js"></script>
