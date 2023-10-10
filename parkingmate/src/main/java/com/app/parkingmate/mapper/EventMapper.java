@@ -33,9 +33,9 @@ public interface EventMapper {
     //    이벤트 검색 기존
     public List<EventVO> selectSearch(EventSearch eventSearch);
 
-    public int nextEvent(int id);
+    public Integer nextEvent(Integer id);
 
-    public int prevEvent(int id);
+    public Integer prevEvent(Integer id);
 
 
 }

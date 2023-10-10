@@ -55,12 +55,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public int nextEvent(int id) {
+    public Integer nextEvent(Integer id) {
        return eventDAO.nextEvent(id);
     }
 
     @Override
-    public int prevEvent(int id) {
+    public Integer prevEvent(Integer id) {
        return eventDAO.prevEvent(id);
     }
 }

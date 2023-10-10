@@ -8,14 +8,17 @@
 <!--    </insert>-->
 
     <insert id="insert">
+        <selectKey keyProperty="id" order="BEFORE" resultType="int">
+            SELECT SEQ_USER.NEXTVAL FROM DUAL
+        </selectKey>
         <choose>
             <when test="UserPassword == null">
                 INSERT INTO TBL_USER(ID, USER_NICKNAME, USER_SNS_LOGIN_STATUS, KAKAO_EMAIL, USER_PROFILE)
-                VALUES(SEQ_USER.NEXTVAL, #{UserNickName}, #{UserSnsLoginStatus}, #{KakaoEmail}, #{UserProfile})
+                VALUES(#{id}, #{UserNickName}, #{UserSnsLoginStatus}, #{KakaoEmail}, #{UserProfile})
             </when>
             <otherwise>
                 INSERT INTO TBL_USER(ID, USER_EMAIL, USER_PASSWORD, USER_NAME, USER_SNS_LOGIN_STATUS, USER_NICKNAME)
-                VALUES(SEQ_USER.NEXTVAL, #{UserEmail}, #{UserPassword}, #{UserName}, #{UserSnsLoginStatus}, #{UserNickName})
+                VALUES(#{id}, #{UserEmail}, #{UserPassword}, #{UserName}, #{UserSnsLoginStatus}, #{UserNickName})
             </otherwise>
         </choose>
     </insert>

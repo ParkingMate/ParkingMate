@@ -31,7 +31,7 @@ public interface EventService {
 //    이벤트 검색
     public EventSearchDTO searchEvent(EventSearch eventSearch);
 
-    public int nextEvent(int id);
+    public Integer nextEvent(Integer id);
 
-    public int prevEvent(int id);
+    public Integer prevEvent(Integer id);
 }

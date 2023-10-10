@@ -64,11 +64,11 @@
         ]]>
     </select>
 
-    <select id="nextEvent" resultType="_int">
+    <select id="nextEvent" resultType="Integer">
         SELECT MIN(ID) AS NEXT_SEQUENCE FROM TBL_EVENT WHERE   ID > #{id}
     </select>
 
-    <select id="prevEvent" resultType="_int">
+    <select id="prevEvent" resultType="Integer">
         SELECT MAX(ID) AS PREVIOUS_SEQUENCE FROM TBL_EVENT WHERE   #{id} > ID
     </select>
 </mapper>

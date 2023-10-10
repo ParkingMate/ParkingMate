@@ -42,7 +42,7 @@ public class EventDAO {
 //    이벤트 검색
     public List<EventVO> selectSearch(EventSearch eventSearch){return eventMapper.selectSearch(eventSearch);}
 
-    public int nextEvent(int id){return eventMapper.nextEvent(id);};
+    public Integer nextEvent(Integer id){return eventMapper.nextEvent(id);};
 
-    public int prevEvent(int id){return eventMapper.prevEvent(id);};
+    public Integer prevEvent(Integer id){return eventMapper.prevEvent(id);};
 }

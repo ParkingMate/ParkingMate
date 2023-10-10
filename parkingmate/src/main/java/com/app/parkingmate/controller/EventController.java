@@ -68,12 +68,10 @@ public class EventController {
         EventVO event = (EventVO) session.getAttribute("event");
         Optional<EventVO> nextEventVO = eventService.detail(eventService.nextEvent(event.getId()));
         if(nextEventVO.isPresent()){
-            log.info("들어옴1");
             model.addAttribute("nextEvent", nextEventVO);
         }
         Optional<EventVO> prevEventVO = eventService.detail(eventService.prevEvent(event.getId()));
         if(prevEventVO.isPresent()){
-            log.info("들어옴2");
             model.addAttribute("prevEvent", prevEventVO);
         }
         model.addAttribute("event",event);
