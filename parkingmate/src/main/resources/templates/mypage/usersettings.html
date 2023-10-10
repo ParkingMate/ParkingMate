@@ -847,7 +847,7 @@
                         <div class="input">
                             <!-- 이메일 입력 -->
                             <!-- 이메일의 경우에는 항시 유저이메일을 우선으로 찾아내어 보여주고 이메일 수정의 경우에도 카카오 이메일은 기존에 그대로 두고 유저이메일이 수정되도록 -->
-                            <input th:field="*{UserEmail}" type="text" id="userEmail" name="userEmail" class="disable input-text" placeholder="이메일 계정" readonly="readonly">
+                            <input th:field="*{UserEmail}" type="text" id="userEmail" class="disable input-text" placeholder="이메일 계정" value="${session.user.KakaoEmail}" readonly="readonly">
                         </div>
 
                         <div id="emailChangeBtn" class="emailAuthBtn btn" data-status="chagne">
@@ -1010,11 +1010,25 @@
 </div>
 </body>
 <script th:inline="javascript">
-    const user = [[${session.user}]];
-    console.log(user);
+    // 세션값 탐색 후 value값 지정
+    window.onload = function() {
+        var user = [[${session.user}]];
+        const userEmailInput = document.getElementById('userEmail'); // 입력 필드 가져오기
 
+        const kakaoEmail = user.kakaoEmail;
+        const userEmail = user.userEmail;
+
+        if (userEmail === null || userEmail === undefined || userEmail === "") {
+            userEmailInput.value = kakaoEmail;
+        } else {
+            userEmailInput.value = userEmail;
+        }
+    }
 </script>
 <script>
+
+
+
     // ======================================================
     // 닉네임 박스 입력 클릭 시
     const nickNameBox = document.querySelector("#saveForm > div:nth-child(1) > input:nth-child(1)");
