@@ -11,7 +11,7 @@ public interface ReservationMapper {
     public void insert(ReservationVO reservationVO);
 
 //    예약내역
-    public List<ReservationVO> selectById();
+    public List<ReservationVO> selectByUserId(Integer userId);
 
 //    예약취소
     public void cancel(ReservationVO reservationVO);

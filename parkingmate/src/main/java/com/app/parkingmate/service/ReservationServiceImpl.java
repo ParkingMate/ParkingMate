@@ -17,8 +17,8 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<ReservationVO> list() {
-        return reservationDAO.list();
+    public List<ReservationVO> list(Integer userId) {
+        return reservationDAO.list(userId);
     }
 
     @Override

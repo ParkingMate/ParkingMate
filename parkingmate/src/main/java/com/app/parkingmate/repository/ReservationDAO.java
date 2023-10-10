@@ -16,7 +16,7 @@ public class ReservationDAO {
     public void insert(ReservationVO reservationVO){reservationMapper.insert(reservationVO);}
 
 //    예약리스트
-    public List<ReservationVO> list(){return reservationMapper.selectById();}
+    public List<ReservationVO> list(Integer userId){return reservationMapper.selectByUserId(userId);}
 
 //    예약취소
     public void cancel(ReservationVO reservationVO){reservationMapper.cancel(reservationVO);}

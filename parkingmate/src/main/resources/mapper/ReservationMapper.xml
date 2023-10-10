@@ -6,7 +6,7 @@
         VALUES (SEQ_RESERVATION.NEXTVAL, #{reservationDate},#{reservationRequset},#{reservationNumber},TO_DATE(CURRENT_DATE),TO_DATE(CURRENT_DATE),#{userId},#{parkingId} )
     </insert>
 
-    <select id="selectById" resultType="ReservationVO">
+    <select id="selectByUserId" resultType="Integer">
         SELECT RESERVATION_DATE, RESERVATION_REQUEST, RESERVATION_NUMBER, RESERVATION_STATUS
         FROM TBL_RESERVATION
         WHERE USER_ID = #{userId}

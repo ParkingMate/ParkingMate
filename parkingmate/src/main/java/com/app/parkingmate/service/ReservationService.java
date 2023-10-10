@@ -9,7 +9,7 @@ public interface ReservationService {
     public void insert(ReservationVO reservationVO);
 
 //    예약내역
-    public List<ReservationVO> list();
+    public List<ReservationVO> list(Integer userId);
 
 //    예약취소
     public void cancel(ReservationVO reservationVO);
